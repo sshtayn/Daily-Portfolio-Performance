@@ -21,6 +21,28 @@ ALPHAVANTAGE_API_KEY = os.getenv("ALPHAVANTAGE_API_KEY")
 
 symbol = "MSFT"
 
+
+#Capturing data
+
+import csv
+
+with open('portfolio.csv','w+') as file:
+    myFile=csv.writer(file)
+    myFile.writerow(["stock", "shares"])
+    stock=input("What is the ticker of the stock you own?")
+    shares=input("How many shares do you own?")
+    myFile.writerow([stock,shares])
+
+
+
+
+
+
+
+
+
+
+
 # 1. INFO INPUTS
 
 request_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={symbol}&apikey={ALPHAVANTAGE_API_KEY}"
@@ -45,6 +67,7 @@ latest_open = tsd[latest_day]["1. open"]
 
 
 
+
 #breakpoint()
 
 
@@ -53,11 +76,9 @@ latest_open = tsd[latest_day]["1. open"]
 
 print("-------------------------")
 print(f"SELECTED SYMBOL: {symbol}")
-print("-------------------------")
-print("REQUESTING STOCK MARKET DATA...")
-print("REQUEST AT: 2018-02-20 02:00pm")
-print("-------------------------")
+
 print(f"LATEST DAY: {last_refreshed}")
 print(f"LATEST CLOSE: {to_usd(float(latest_close))}")
 print(f"LATEST OPEN: {to_usd(float(latest_open))}")
-print("hello")
+
+
